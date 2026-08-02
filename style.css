@@ -222,6 +222,28 @@ nav ul li a:hover {
 
 }
 
+/* ========================
+      BOTONES DEL HERO
+======================== */
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.btn-recetario {
+  background: #ffffff;
+  color: var(--primary-dark);
+  border: 2px solid var(--primary-dark);
+}
+
+.btn-recetario:hover {
+  background: var(--primary-dark);
+  color: #ffffff;
+}
+
 .hero-image {
 
   display: flex;
@@ -608,6 +630,12 @@ footer hr {
   table {
     width: 100%;
     display: table;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
 
 }
