@@ -472,6 +472,64 @@ section {
 
 }
 
+/*=========================
+        HISTORIA
+==========================*/
+
+.historia {
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 50px;
+
+  align-items: center;
+
+  margin-top: 40px;
+
+}
+
+.historia-texto h3 {
+
+  color: var(--primary-dark);
+
+  font-size: 2rem;
+
+  margin-bottom: 20px;
+
+}
+
+.historia-texto p {
+
+  margin-bottom: 18px;
+
+  color: var(--gray);
+
+  text-align: justify;
+
+}
+
+.historia-video {
+
+  display: flex;
+
+  justify-content: center;
+
+}
+
+.historia-video video {
+
+  width: 100%;
+
+  max-width: 550px;
+
+  border-radius: 20px;
+
+  box-shadow: 0 15px 35px rgba(0, 0, 0, .18);
+
+}
+
 /* ======================================================
    CONTACTO
 ====================================================== */
@@ -638,6 +696,18 @@ footer hr {
     align-items: center;
   }
 
+  .historia {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .historia-texto {
+    text-align: center;
+  }
+
+  .historia-texto p {
+    text-align: left;
+  }
 }
 
 th,
