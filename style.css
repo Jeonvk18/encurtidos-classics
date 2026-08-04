@@ -530,6 +530,52 @@ section {
 
 }
 
+/*=========================
+            FAQ
+==========================*/
+
+details {
+
+  background: white;
+
+  margin: 20px 0;
+
+  padding: 18px 25px;
+
+  border-radius: 15px;
+
+  box-shadow: var(--shadow);
+
+  transition: .3s;
+
+}
+
+details:hover {
+
+  transform: translateY(-3px);
+
+}
+
+summary {
+
+  cursor: pointer;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  color: var(--primary-dark);
+
+}
+
+details p {
+
+  margin-top: 15px;
+
+  color: var(--gray);
+
+}
+
 /* ======================================================
    CONTACTO
 ====================================================== */
