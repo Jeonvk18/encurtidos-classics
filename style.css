@@ -932,6 +932,44 @@ footer hr {
 }
 
 /* ======================================================
+   BOTÓN FLOTANTE INSTAGRAM
+====================================================== */
+
+.ig-float {
+
+  position: fixed;
+
+  bottom: 25px;
+  right: 25px;
+
+  width: 60px;
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(135deg, #E1306C, #FD1D1D, #FCAF45);
+
+  border-radius: 50%;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .3);
+
+  z-index: 999;
+
+  transition: .35s;
+
+}
+
+.ig-float:hover {
+
+  transform: scale(1.1) translateY(-5px);
+
+  box-shadow: 0 15px 35px rgba(0, 0, 0, .4);
+
+}
+
+/* ======================================================
    RESPONSIVE
 ====================================================== */
 
@@ -1096,6 +1134,18 @@ td {
   .mango-btn {
     width: 100%;
     text-align: center;
+  }
+
+  .ig-float {
+    width: 52px;
+    height: 52px;
+    bottom: 18px;
+    right: 18px;
+  }
+
+  .ig-float svg {
+    width: 24px;
+    height: 24px;
   }
 
 }
