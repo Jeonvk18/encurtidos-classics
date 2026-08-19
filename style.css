@@ -68,6 +68,22 @@ header {
 
 }
 
+header.scrolled nav {
+
+  background: rgba(15, 60, 30, .85);
+
+  backdrop-filter: blur(8px);
+
+  border-radius: 16px;
+
+  padding: 10px 25px;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .25);
+
+  transition: .35s;
+
+}
+
 .overlay {
 
   width: 100%;
@@ -141,6 +157,80 @@ nav ul li a:hover {
   background: white;
 
   color: var(--primary);
+
+}
+
+nav ul li a.active-link {
+
+  background: white;
+
+  color: var(--primary-dark);
+
+}
+
+/* ======================================================
+   BOTÓN HAMBURGUESA (MÓVIL)
+====================================================== */
+
+.nav-toggle {
+
+  display: none;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 5px;
+
+  width: 42px;
+
+  height: 42px;
+
+  background: rgba(255, 255, 255, .12);
+
+  border: none;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  padding: 0;
+
+}
+
+.nav-toggle span {
+
+  display: block;
+
+  width: 24px;
+
+  height: 3px;
+
+  margin: 0 auto;
+
+  background: white;
+
+  border-radius: 5px;
+
+  transition: .3s;
+
+}
+
+.nav-toggle.active span:nth-child(1) {
+
+  transform: translateY(8px) rotate(45deg);
+
+}
+
+.nav-toggle.active span:nth-child(2) {
+
+  opacity: 0;
+
+}
+
+.nav-toggle.active span:nth-child(3) {
+
+  transform: translateY(-8px) rotate(-45deg);
 
 }
 
@@ -969,6 +1059,637 @@ footer hr {
 
 }
 
+.ig-float.pulse {
+
+  animation: igPulse 1.8s ease-out 3;
+
+}
+
+@keyframes igPulse {
+
+  0% {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .3), 0 0 0 0 rgba(225, 48, 108, .55);
+  }
+
+  70% {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .3), 0 0 0 18px rgba(225, 48, 108, 0);
+  }
+
+  100% {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .3), 0 0 0 0 rgba(225, 48, 108, 0);
+  }
+
+}
+
+/* ======================================================
+   BOTÓN VOLVER ARRIBA
+====================================================== */
+
+.back-to-top {
+
+  position: fixed;
+
+  bottom: 25px;
+
+  right: 95px;
+
+  width: 50px;
+
+  height: 50px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: var(--primary-dark);
+
+  color: white;
+
+  font-size: 1.3rem;
+
+  border: none;
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .3);
+
+  z-index: 999;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transform: translateY(15px);
+
+  transition: .35s;
+
+}
+
+.back-to-top.show {
+
+  opacity: 1;
+
+  visibility: visible;
+
+  transform: translateY(0);
+
+}
+
+.back-to-top:hover {
+
+  background: var(--primary);
+
+  transform: translateY(-5px);
+
+}
+
+@media (max-width:480px) {
+
+  .back-to-top {
+    right: 80px;
+    bottom: 18px;
+    width: 44px;
+    height: 44px;
+  }
+
+}
+
+/* ======================================================
+   SCROLL REVEAL
+====================================================== */
+
+.reveal {
+
+  opacity: 0;
+
+  transform: translateY(35px);
+
+  transition: opacity .7s ease, transform .7s ease;
+
+}
+
+.reveal-active {
+
+  opacity: 1;
+
+  transform: translateY(0);
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+}
+
+/* ======================================================
+   STEPPER DE CANTIDAD
+====================================================== */
+
+.qty-stepper {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 18px;
+
+  margin-top: 18px;
+
+}
+
+.qty-stepper-mango {
+
+  justify-content: flex-start;
+
+  margin: 22px 0 10px;
+
+}
+
+.qty-btn {
+
+  width: 34px;
+
+  height: 34px;
+
+  border: 2px solid var(--primary);
+
+  background: white;
+
+  color: var(--primary-dark);
+
+  font-size: 1.1rem;
+
+  font-weight: 700;
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  transition: .25s;
+
+  line-height: 1;
+
+}
+
+.qty-btn:hover {
+
+  background: var(--primary);
+
+  color: white;
+
+  transform: scale(1.08);
+
+}
+
+.qty-value {
+
+  min-width: 24px;
+
+  text-align: center;
+
+  font-weight: 700;
+
+  font-size: 1.15rem;
+
+  color: var(--primary-dark);
+
+}
+
+/* ======================================================
+   BOTÓN FLOTANTE DEL CARRITO
+====================================================== */
+
+.cart-toggle {
+
+  position: fixed;
+
+  bottom: 25px;
+
+  left: 25px;
+
+  width: 60px;
+
+  height: 60px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 1.5rem;
+
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+
+  color: white;
+
+  border: none;
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .3);
+
+  z-index: 999;
+
+  transition: .35s;
+
+}
+
+.cart-toggle:hover {
+
+  transform: scale(1.1) translateY(-5px);
+
+  box-shadow: 0 15px 35px rgba(0, 0, 0, .4);
+
+}
+
+.cart-count {
+
+  position: absolute;
+
+  top: -4px;
+
+  right: -4px;
+
+  min-width: 22px;
+
+  height: 22px;
+
+  padding: 0 5px;
+
+  background: #D4B04C;
+
+  color: white;
+
+  font-size: .75rem;
+
+  font-weight: 700;
+
+  border-radius: 50%;
+
+  display: none;
+
+  align-items: center;
+
+  justify-content: center;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .25);
+
+}
+
+.cart-count.show {
+
+  display: flex;
+
+}
+
+/* ======================================================
+   PANEL DEL CARRITO
+====================================================== */
+
+.cart-panel {
+
+  position: fixed;
+
+  bottom: 100px;
+
+  left: 25px;
+
+  width: 320px;
+
+  max-width: calc(100vw - 50px);
+
+  max-height: 70vh;
+
+  background: white;
+
+  border-radius: 20px;
+
+  box-shadow: 0 20px 45px rgba(0, 0, 0, .3);
+
+  padding: 22px;
+
+  z-index: 1000;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transform: translateY(15px);
+
+  transition: .3s;
+
+  display: flex;
+
+  flex-direction: column;
+
+}
+
+.cart-panel.open {
+
+  opacity: 1;
+
+  visibility: visible;
+
+  transform: translateY(0);
+
+}
+
+.cart-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 15px;
+
+}
+
+.cart-header h3 {
+
+  color: var(--primary-dark);
+
+  font-size: 1.3rem;
+
+}
+
+.cart-close {
+
+  background: none;
+
+  border: none;
+
+  font-size: 1.1rem;
+
+  color: var(--gray);
+
+  cursor: pointer;
+
+  padding: 4px;
+
+}
+
+.cart-close:hover {
+
+  color: var(--primary-dark);
+
+}
+
+.cart-items {
+
+  overflow-y: auto;
+
+  max-height: 220px;
+
+  margin-bottom: 15px;
+
+}
+
+.cart-empty {
+
+  color: var(--gray);
+
+  font-size: .9rem;
+
+  text-align: center;
+
+  padding: 10px 0;
+
+}
+
+.cart-item {
+
+  display: grid;
+
+  grid-template-columns: 1fr auto auto;
+
+  gap: 10px;
+
+  align-items: center;
+
+  padding: 10px 0;
+
+  border-bottom: 1px solid #eef2ee;
+
+  font-size: .92rem;
+
+}
+
+.cart-item-name {
+
+  color: var(--text);
+
+  font-weight: 500;
+
+}
+
+.cart-item-qty {
+
+  color: var(--gray);
+
+}
+
+.cart-item-subtotal {
+
+  color: var(--primary-dark);
+
+  font-weight: 600;
+
+}
+
+.cart-total {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  font-weight: 700;
+
+  color: var(--primary-dark);
+
+  font-size: 1.1rem;
+
+  padding-top: 10px;
+
+  border-top: 2px solid #eef2ee;
+
+  margin-bottom: 18px;
+
+}
+
+.cart-actions {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+}
+
+.cart-send {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  text-decoration: none;
+
+  padding: 12px 15px;
+
+  border-radius: 40px;
+
+  font-weight: 600;
+
+  font-size: .92rem;
+
+  transition: .3s;
+
+  color: white;
+
+}
+
+.cart-send-wa {
+
+  background: linear-gradient(135deg, #25D366, #128C7E);
+
+}
+
+.cart-send-ig {
+
+  background: linear-gradient(135deg, #E1306C, #FD1D1D, #FCAF45);
+
+}
+
+.cart-send:hover {
+
+  transform: translateY(-3px);
+
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+
+}
+
+.cart-send.disabled {
+
+  pointer-events: none;
+
+  opacity: .55;
+
+}
+
+.cart-note {
+
+  margin-top: 12px;
+
+  font-size: .78rem;
+
+  color: var(--gray);
+
+  text-align: center;
+
+  line-height: 1.5;
+
+}
+
+/* ======================================================
+   TOAST DEL CARRITO
+====================================================== */
+
+.cart-toast {
+
+  position: fixed;
+
+  bottom: 100px;
+
+  left: 50%;
+
+  transform: translateX(-50%) translateY(10px);
+
+  background: var(--primary-dark);
+
+  color: white;
+
+  padding: 12px 22px;
+
+  border-radius: 40px;
+
+  font-size: .9rem;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .3);
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transition: .3s;
+
+  z-index: 1100;
+
+  text-align: center;
+
+  max-width: 90vw;
+
+}
+
+.cart-toast.show {
+
+  opacity: 1;
+
+  visibility: visible;
+
+  transform: translateX(-50%) translateY(0);
+
+}
+
+@media (max-width:480px) {
+
+  .cart-toggle {
+    width: 52px;
+    height: 52px;
+    bottom: 18px;
+    left: 18px;
+    font-size: 1.3rem;
+  }
+
+  .cart-panel {
+    left: 12px;
+    bottom: 82px;
+    width: calc(100vw - 24px);
+  }
+
+  .cart-toast {
+    bottom: 82px;
+  }
+
+}
+
 /* ======================================================
    RESPONSIVE
 ====================================================== */
@@ -991,8 +1712,54 @@ footer hr {
   }
 
   nav {
+    position: relative;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  nav ul {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+
     flex-direction: column;
-    gap: 20px;
+
+    background: rgba(15, 60, 30, .96);
+
+    backdrop-filter: blur(10px);
+
+    border-radius: 16px;
+
+    padding: 15px 10px;
+
+    min-width: 200px;
+
+    gap: 5px;
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .3);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(-10px);
+
+    transition: .3s;
+
+    z-index: 50;
+  }
+
+  nav ul.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  nav ul li a {
+    display: block;
+    text-align: center;
   }
 
   .mango-contenedor {
