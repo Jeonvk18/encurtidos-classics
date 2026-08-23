@@ -2,6 +2,9 @@
    ENCURTIDOS CLASSIC'S - SCRIPT PRINCIPAL
 ====================================================== */
 
+<script data-goatcounter="https://encurtidosclassics.goatcounter.com/count"
+  async src="//gc.zgo.at/count.js"></script>
+
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ====================================================
