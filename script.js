@@ -8,27 +8,27 @@ document.addEventListener('DOMContentLoaded', () => {
      1. MENÚ HAMBURGUESA (MÓVIL)
   ==================================================== */
 
-  const navToggle = document.getElementById('nav-toggle');
-  const navLinks = document.getElementById('nav-links');
+  const botonMenu = document.getElementById('nav-toggle');
+  const enlacesMenu = document.getElementById('nav-links');
 
-  if (navToggle && navLinks) {
+  if (botonMenu && enlacesMenu) {
 
-    navToggle.addEventListener('click', () => {
+    botonMenu.addEventListener('click', () => {
 
-      const isOpen = navLinks.classList.toggle('open');
-      navToggle.classList.toggle('active', isOpen);
-      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      const estaAbierto = enlacesMenu.classList.toggle('open');
+      botonMenu.classList.toggle('active', estaAbierto);
+      botonMenu.setAttribute('aria-expanded', estaAbierto ? 'true' : 'false');
 
     });
 
     // Cierra el menú al tocar cualquier link
-    navLinks.querySelectorAll('a').forEach(link => {
+    enlacesMenu.querySelectorAll('a').forEach(enlace => {
 
-      link.addEventListener('click', () => {
+      enlace.addEventListener('click', () => {
 
-        navLinks.classList.remove('open');
-        navToggle.classList.remove('active');
-        navToggle.setAttribute('aria-expanded', 'false');
+        enlacesMenu.classList.remove('open');
+        botonMenu.classList.remove('active');
+        botonMenu.setAttribute('aria-expanded', 'false');
 
       });
 
@@ -40,24 +40,24 @@ document.addEventListener('DOMContentLoaded', () => {
      2. LINK ACTIVO SEGÚN SECCIÓN VISIBLE
   ==================================================== */
 
-  const sections = document.querySelectorAll('section[id], header[id]');
-  const navAnchors = document.querySelectorAll('#nav-links a');
+  const secciones = document.querySelectorAll('section[id], header[id]');
+  const anclasMenu = document.querySelectorAll('#nav-links a');
 
-  if (sections.length && navAnchors.length) {
+  if (secciones.length && anclasMenu.length) {
 
-    const sectionObserver = new IntersectionObserver((entries) => {
+    const observadorSecciones = new IntersectionObserver((entradas) => {
 
-      entries.forEach(entry => {
+      entradas.forEach(entrada => {
 
-        if (entry.isIntersecting) {
+        if (entrada.isIntersecting) {
 
-          const id = entry.target.getAttribute('id');
+          const id = entrada.target.getAttribute('id');
 
-          navAnchors.forEach(anchor => {
+          anclasMenu.forEach(ancla => {
 
-            anchor.classList.toggle(
+            ancla.classList.toggle(
               'active-link',
-              anchor.getAttribute('href') === `#${id}`
+              ancla.getAttribute('href') === `#${id}`
             );
 
           });
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
 
-    sections.forEach(section => sectionObserver.observe(section));
+    secciones.forEach(seccion => observadorSecciones.observe(seccion));
 
   }
 
@@ -76,24 +76,24 @@ document.addEventListener('DOMContentLoaded', () => {
      3. HEADER: SOMBRA/FONDO AL HACER SCROLL
   ==================================================== */
 
-  const header = document.querySelector('header');
+  const encabezado = document.querySelector('header');
 
-  const handleHeaderScroll = () => {
+  const manejarScrollEncabezado = () => {
 
-    if (!header) return;
+    if (!encabezado) return;
 
-    header.classList.toggle('scrolled', window.scrollY > 60);
+    encabezado.classList.toggle('scrolled', window.scrollY > 60);
 
   };
 
-  window.addEventListener('scroll', handleHeaderScroll, { passive: true });
-  handleHeaderScroll();
+  window.addEventListener('scroll', manejarScrollEncabezado, { passive: true });
+  manejarScrollEncabezado();
 
   /* ====================================================
      4. SCROLL REVEAL (ANIMACIÓN AL APARECER)
   ==================================================== */
 
-  const revealSelectors = [
+  const selectoresRevelado = [
     '.card',
     '.producto',
     '.mango-producto',
@@ -105,24 +105,24 @@ document.addEventListener('DOMContentLoaded', () => {
     'table'
   ];
 
-  const revealElements = document.querySelectorAll(revealSelectors.join(','));
+  const elementosRevelado = document.querySelectorAll(selectoresRevelado.join(','));
 
-  revealElements.forEach((el, index) => {
+  elementosRevelado.forEach((elemento, indice) => {
 
-    el.classList.add('reveal');
+    elemento.classList.add('reveal');
     // Pequeño retraso escalonado para elementos del mismo grupo
-    el.style.transitionDelay = `${(index % 4) * 0.1}s`;
+    elemento.style.transitionDelay = `${(indice % 4) * 0.1}s`;
 
   });
 
-  const revealObserver = new IntersectionObserver((entries) => {
+  const observadorRevelado = new IntersectionObserver((entradas) => {
 
-    entries.forEach(entry => {
+    entradas.forEach(entrada => {
 
-      if (entry.isIntersecting) {
+      if (entrada.isIntersecting) {
 
-        entry.target.classList.add('reveal-active');
-        revealObserver.unobserve(entry.target);
+        entrada.target.classList.add('reveal-active');
+        observadorRevelado.unobserve(entrada.target);
 
       }
 
@@ -130,26 +130,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }, { threshold: 0.15 });
 
-  revealElements.forEach(el => revealObserver.observe(el));
+  elementosRevelado.forEach(elemento => observadorRevelado.observe(elemento));
 
   /* ====================================================
      5. BOTÓN "VOLVER ARRIBA"
   ==================================================== */
 
-  const backToTop = document.getElementById('back-to-top');
+  const botonVolverArriba = document.getElementById('back-to-top');
 
-  if (backToTop) {
+  if (botonVolverArriba) {
 
-    const toggleBackToTop = () => {
+    const alternarVolverArriba = () => {
 
-      backToTop.classList.toggle('show', window.scrollY > 500);
+      botonVolverArriba.classList.toggle('show', window.scrollY > 500);
 
     };
 
-    window.addEventListener('scroll', toggleBackToTop, { passive: true });
-    toggleBackToTop();
+    window.addEventListener('scroll', alternarVolverArriba, { passive: true });
+    alternarVolverArriba();
 
-    backToTop.addEventListener('click', () => {
+    botonVolverArriba.addEventListener('click', () => {
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -161,13 +161,13 @@ document.addEventListener('DOMContentLoaded', () => {
      6. BADGE LLAMATIVO EN EL BOTÓN DE INSTAGRAM
   ==================================================== */
 
-  const igFloat = document.querySelector('.ig-float');
+  const flotanteInstagram = document.querySelector('.ig-float');
 
-  if (igFloat) {
+  if (flotanteInstagram) {
 
     setTimeout(() => {
 
-      igFloat.classList.add('pulse');
+      flotanteInstagram.classList.add('pulse');
 
     }, 4000);
 
@@ -177,116 +177,116 @@ document.addEventListener('DOMContentLoaded', () => {
      7. CARRITO DE PEDIDO
   ==================================================== */
 
-  const WHATSAPP_NUMBER = '593978731507'; // +593 97 873 1507
-  const INSTAGRAM_USER = 'encurtidosclassics1';
+  const NUMERO_WHATSAPP = '593978731507'; // +593 97 873 1507
+  const USUARIO_INSTAGRAM = 'encurtidosclassics1';
 
-  const cart = {}; // { nombreProducto: { price, qty } }
+  const carrito = {}; // { nombreProducto: { price, qty } }
 
-  const cartToggle = document.getElementById('cart-toggle');
-  const cartPanel = document.getElementById('cart-panel');
-  const cartClose = document.getElementById('cart-close');
-  const cartCount = document.getElementById('cart-count');
-  const cartItemsEl = document.getElementById('cart-items');
-  const cartTotalEl = document.getElementById('cart-total-amount');
-  const cartWhatsappBtn = document.getElementById('cart-whatsapp');
-  const cartInstagramBtn = document.getElementById('cart-instagram');
-  const cartToast = document.getElementById('cart-toast');
+  const botonCarrito = document.getElementById('cart-toggle');
+  const panelCarrito = document.getElementById('cart-panel');
+  const cerrarCarrito = document.getElementById('cart-close');
+  const contadorCarrito = document.getElementById('cart-count');
+  const elementosCarritoEl = document.getElementById('cart-items');
+  const totalCarritoEl = document.getElementById('cart-total-amount');
+  const botonWhatsappCarrito = document.getElementById('cart-whatsapp');
+  const botonInstagramCarrito = document.getElementById('cart-instagram');
+  const avisoCarrito = document.getElementById('cart-toast');
 
-  const steppers = document.querySelectorAll('.qty-stepper');
+  const contadoresCantidad = document.querySelectorAll('.qty-stepper');
 
-  const formatMoney = (value) => `$${value.toFixed(2)}`;
+  const formatearDinero = (valor) => `$${valor.toFixed(2)}`;
 
-  const showToast = (message) => {
+  const mostrarAviso = (mensaje) => {
 
-    if (!cartToast) return;
+    if (!avisoCarrito) return;
 
-    cartToast.textContent = message;
-    cartToast.classList.add('show');
+    avisoCarrito.textContent = mensaje;
+    avisoCarrito.classList.add('show');
 
-    clearTimeout(showToast._timer);
+    clearTimeout(mostrarAviso._temporizador);
 
-    showToast._timer = setTimeout(() => {
-      cartToast.classList.remove('show');
+    mostrarAviso._temporizador = setTimeout(() => {
+      avisoCarrito.classList.remove('show');
     }, 2600);
 
   };
 
-  const buildOrderText = () => {
+  const construirTextoPedido = () => {
 
-    const items = Object.entries(cart);
+    const items = Object.entries(carrito);
 
     if (!items.length) return '';
 
-    let text = 'Hola 👋, quiero hacer un pedido en Encurtidos Classic\'s:\n\n';
+    let texto = 'Hola 👋, quiero hacer un pedido en Encurtidos Classic\'s:\n\n';
 
     let total = 0;
 
-    items.forEach(([name, data]) => {
+    items.forEach(([nombre, datos]) => {
 
-      const subtotal = data.price * data.qty;
+      const subtotal = datos.price * datos.qty;
       total += subtotal;
 
-      text += `• ${data.qty} x ${name} — ${formatMoney(subtotal)}\n`;
+      texto += `• ${datos.qty} x ${nombre} — ${formatearDinero(subtotal)}\n`;
 
     });
 
-    text += `\nTotal: ${formatMoney(total)}`;
-    text += '\n\n¿Me confirman disponibilidad y forma de entrega? ¡Gracias!';
+    texto += `\nTotal: ${formatearDinero(total)}`;
+    texto += '\n\n¿Me confirman disponibilidad y forma de entrega? ¡Gracias!';
 
-    return text;
-
-  };
-
-  const updateCartLinks = () => {
-
-    const orderText = buildOrderText();
-    const encoded = encodeURIComponent(orderText);
-
-    if (cartWhatsappBtn) {
-
-      cartWhatsappBtn.href = orderText
-        ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`
-        : `https://wa.me/${WHATSAPP_NUMBER}`;
-
-    }
-
-    if (cartInstagramBtn) {
-
-      cartInstagramBtn.href = `https://ig.me/m/${INSTAGRAM_USER}`;
-
-    }
+    return texto;
 
   };
 
-  const renderCart = () => {
+  const actualizarEnlacesCarrito = () => {
 
-    const entries = Object.entries(cart);
+    const textoPedido = construirTextoPedido();
+    const textoCodificado = encodeURIComponent(textoPedido);
 
-    const totalItems = entries.reduce((sum, [, data]) => sum + data.qty, 0);
-    const totalAmount = entries.reduce((sum, [, data]) => sum + data.qty * data.price, 0);
+    if (botonWhatsappCarrito) {
 
-    if (cartCount) {
-
-      cartCount.textContent = totalItems;
-      cartCount.classList.toggle('show', totalItems > 0);
+      botonWhatsappCarrito.href = textoPedido
+        ? `https://wa.me/${NUMERO_WHATSAPP}?text=${textoCodificado}`
+        : `https://wa.me/${NUMERO_WHATSAPP}`;
 
     }
 
-    if (cartTotalEl) cartTotalEl.textContent = formatMoney(totalAmount);
+    if (botonInstagramCarrito) {
 
-    if (cartItemsEl) {
+      botonInstagramCarrito.href = `https://ig.me/m/${USUARIO_INSTAGRAM}`;
 
-      if (!entries.length) {
+    }
 
-        cartItemsEl.innerHTML = '<p class="cart-empty">Aún no has agregado productos. Usa los botones + en cada producto.</p>';
+  };
+
+  const renderizarCarrito = () => {
+
+    const entradas = Object.entries(carrito);
+
+    const totalItems = entradas.reduce((suma, [, datos]) => suma + datos.qty, 0);
+    const totalMonto = entradas.reduce((suma, [, datos]) => suma + datos.qty * datos.price, 0);
+
+    if (contadorCarrito) {
+
+      contadorCarrito.textContent = totalItems;
+      contadorCarrito.classList.toggle('show', totalItems > 0);
+
+    }
+
+    if (totalCarritoEl) totalCarritoEl.textContent = formatearDinero(totalMonto);
+
+    if (elementosCarritoEl) {
+
+      if (!entradas.length) {
+
+        elementosCarritoEl.innerHTML = '<p class="cart-empty">Aún no has agregado productos. Usa los botones + en cada producto.</p>';
 
       } else {
 
-        cartItemsEl.innerHTML = entries.map(([name, data]) => `
+        elementosCarritoEl.innerHTML = entradas.map(([nombre, datos]) => `
           <div class="cart-item">
-            <span class="cart-item-name">${name}</span>
-            <span class="cart-item-qty">x${data.qty}</span>
-            <span class="cart-item-subtotal">${formatMoney(data.qty * data.price)}</span>
+            <span class="cart-item-name">${nombre}</span>
+            <span class="cart-item-qty">x${datos.qty}</span>
+            <span class="cart-item-subtotal">${formatearDinero(datos.qty * datos.price)}</span>
           </div>
         `).join('');
 
@@ -294,61 +294,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    const disableSend = entries.length === 0;
+    const deshabilitarEnvio = entradas.length === 0;
 
-    [cartWhatsappBtn, cartInstagramBtn].forEach(btn => {
+    [botonWhatsappCarrito, botonInstagramCarrito].forEach(boton => {
 
-      if (btn) btn.classList.toggle('disabled', disableSend);
-
-    });
-
-    updateCartLinks();
-
-  };
-
-  const syncStepperDisplay = (stepper, qty) => {
-
-    const valueEl = stepper.querySelector('.qty-value');
-    if (valueEl) valueEl.textContent = qty;
-
-  };
-
-  steppers.forEach(stepper => {
-
-    const container = stepper.closest('[data-name]');
-    if (!container) return;
-
-    const name = container.getAttribute('data-name');
-    const price = parseFloat(container.getAttribute('data-price')) || 0;
-
-    const minusBtn = stepper.querySelector('.qty-minus');
-    const plusBtn = stepper.querySelector('.qty-plus');
-
-    minusBtn.addEventListener('click', () => {
-
-      if (!cart[name] || cart[name].qty <= 0) return;
-
-      cart[name].qty -= 1;
-
-      if (cart[name].qty === 0) delete cart[name];
-
-      syncStepperDisplay(stepper, cart[name] ? cart[name].qty : 0);
-      renderCart();
+      if (boton) boton.classList.toggle('disabled', deshabilitarEnvio);
 
     });
 
-    plusBtn.addEventListener('click', () => {
+    actualizarEnlacesCarrito();
 
-      if (!cart[name]) cart[name] = { price, qty: 0 };
+  };
 
-      cart[name].qty += 1;
+  const sincronizarVistaContador = (contador, cantidad) => {
 
-      syncStepperDisplay(stepper, cart[name].qty);
-      renderCart();
+    const valorEl = contador.querySelector('.qty-value');
+    if (valorEl) valorEl.textContent = cantidad;
 
-      if (cartPanel && !cartPanel.classList.contains('open')) {
+  };
 
-        showToast(`${name} agregado al pedido 🛒`);
+  contadoresCantidad.forEach(contador => {
+
+    const contenedor = contador.closest('[data-name]');
+    if (!contenedor) return;
+
+    const nombre = contenedor.getAttribute('data-name');
+    const precio = parseFloat(contenedor.getAttribute('data-price')) || 0;
+
+    const botonMenos = contador.querySelector('.qty-minus');
+    const botonMas = contador.querySelector('.qty-plus');
+
+    botonMenos.addEventListener('click', () => {
+
+      if (!carrito[nombre] || carrito[nombre].qty <= 0) return;
+
+      carrito[nombre].qty -= 1;
+
+      if (carrito[nombre].qty === 0) delete carrito[nombre];
+
+      sincronizarVistaContador(contador, carrito[nombre] ? carrito[nombre].qty : 0);
+      renderizarCarrito();
+
+    });
+
+    botonMas.addEventListener('click', () => {
+
+      if (!carrito[nombre]) carrito[nombre] = { price: precio, qty: 0 };
+
+      carrito[nombre].qty += 1;
+
+      sincronizarVistaContador(contador, carrito[nombre].qty);
+      renderizarCarrito();
+
+      if (panelCarrito && !panelCarrito.classList.contains('open')) {
+
+        mostrarAviso(`${nombre} agregado al pedido 🛒`);
 
       }
 
@@ -356,45 +356,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
   });
 
-  if (cartToggle && cartPanel) {
+  if (botonCarrito && panelCarrito) {
 
-    cartToggle.addEventListener('click', () => {
+    botonCarrito.addEventListener('click', () => {
 
-      cartPanel.classList.toggle('open');
-
-    });
-
-  }
-
-  if (cartClose && cartPanel) {
-
-    cartClose.addEventListener('click', () => {
-
-      cartPanel.classList.remove('open');
+      panelCarrito.classList.toggle('open');
 
     });
 
   }
 
-  if (cartInstagramBtn) {
+  if (cerrarCarrito && panelCarrito) {
 
-    cartInstagramBtn.addEventListener('click', (event) => {
+    cerrarCarrito.addEventListener('click', () => {
 
-      const orderText = buildOrderText();
+      panelCarrito.classList.remove('open');
 
-      if (!orderText) {
+    });
 
-        event.preventDefault();
-        showToast('Agrega al menos un producto primero 🙂');
+  }
+
+  if (botonInstagramCarrito) {
+
+    botonInstagramCarrito.addEventListener('click', (evento) => {
+
+      const textoPedido = construirTextoPedido();
+
+      if (!textoPedido) {
+
+        evento.preventDefault();
+        mostrarAviso('Agrega al menos un producto primero 🙂');
         return;
 
       }
 
       if (navigator.clipboard && navigator.clipboard.writeText) {
 
-        navigator.clipboard.writeText(orderText)
-          .then(() => showToast('Pedido copiado. ¡Pégalo en el chat de Instagram! 📋'))
-          .catch(() => showToast('Abriendo Instagram...'));
+        navigator.clipboard.writeText(textoPedido)
+          .then(() => mostrarAviso('Pedido copiado. ¡Pégalo en el chat de Instagram! 📋'))
+          .catch(() => mostrarAviso('Abriendo Instagram...'));
 
       }
 
@@ -402,14 +402,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
-  if (cartWhatsappBtn) {
+  if (botonWhatsappCarrito) {
 
-    cartWhatsappBtn.addEventListener('click', (event) => {
+    botonWhatsappCarrito.addEventListener('click', (evento) => {
 
-      if (!Object.keys(cart).length) {
+      if (!Object.keys(carrito).length) {
 
-        event.preventDefault();
-        showToast('Agrega al menos un producto primero 🙂');
+        evento.preventDefault();
+        mostrarAviso('Agrega al menos un producto primero 🙂');
 
       }
 
@@ -417,6 +417,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
-  renderCart();
+  renderizarCarrito();
 
 });
