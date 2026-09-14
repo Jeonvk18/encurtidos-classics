@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     });
 
-    // Cierra el menú al tocar cualquier link
     enlacesMenu.querySelectorAll('a').forEach(enlace => {
 
       enlace.addEventListener('click', () => {

@@ -30,11 +30,6 @@ function crearTarjetaProducto(producto) {
 
 }
 
-/**
- * Pide productos.json, arma el HTML de todas las tarjetas
- * y lo inserta dentro del contenedor .productos que ya
- * existe en el HTML (ahora vacío).
- */
 function cargarProductos() {
 
   const contenedor = document.querySelector('.productos');
@@ -52,9 +47,6 @@ function cargarProductos() {
 
       contenedor.innerHTML = productos.map(crearTarjetaProducto).join('');
 
-      // Avisamos al resto de la página (script.js) que las tarjetas
-      // ya existen en el DOM, para que pueda conectar los botones
-      // +/- del carrito a estos productos nuevos.
       document.dispatchEvent(new CustomEvent('productos:listos'));
 
     })
