@@ -2,12 +2,6 @@
    ENCURTIDOS CLASSIC'S - CARGA DE PRODUCTOS DESDE JSON
 ====================================================== */
 
-/**J
- * Convierte UN producto (objeto) en el mismo bloque HTML
- * que ya tenías escrito a mano, con las mismas clases y
- * los mismos atributos data-name / data-price que usa
- * script.js para el carrito.
- */
 function crearTarjetaProducto(producto) {
 
   return `
