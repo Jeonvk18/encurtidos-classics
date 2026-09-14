@@ -105,16 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
     'table'
   ];
 
-  const elementosRevelado = document.querySelectorAll(selectoresRevelado.join(','));
-
-  elementosRevelado.forEach((elemento, indice) => {
-
-    elemento.classList.add('reveal');
-    // Pequeño retraso escalonado para elementos del mismo grupo
-    elemento.style.transitionDelay = `${(indice % 4) * 0.1}s`;
-
-  });
-
   const observadorRevelado = new IntersectionObserver((entradas) => {
 
     entradas.forEach(entrada => {
@@ -130,7 +120,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }, { threshold: 0.15 });
 
-  elementosRevelado.forEach(elemento => observadorRevelado.observe(elemento));
+  // Se separó en una función porque ahora se necesita ejecutar dos veces:
+  // una vez al cargar la página (tarjetas, tabla, historia, etc.) y otra
+  // vez cuando producto.js termina de insertar las tarjetas de producto.
+  function activarScrollReveal(elementos) {
+
+    elementos.forEach((elemento, indice) => {
+
+      elemento.classList.add('reveal');
+      elemento.style.transitionDelay = `${(indice % 4) * 0.1}s`;
+      observadorRevelado.observe(elemento);
+
+    });
+
+  }
+
+  activarScrollReveal(document.querySelectorAll(selectoresRevelado.join(',')));
 
   /* ====================================================
      5. BOTÓN "VOLVER ARRIBA"
@@ -191,8 +196,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const botonWhatsappCarrito = document.getElementById('cart-whatsapp');
   const botonInstagramCarrito = document.getElementById('cart-instagram');
   const avisoCarrito = document.getElementById('cart-toast');
-
-  const contadoresCantidad = document.querySelectorAll('.qty-stepper');
 
   const formatearDinero = (valor) => `$${valor.toFixed(2)}`;
 
@@ -313,13 +316,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   };
 
-  contadoresCantidad.forEach(contador => {
+  /**
+   * Conecta los botones +/- de UN stepper de cantidad al carrito.
+   * Antes esto vivía suelto dentro de un forEach que se ejecutaba
+   * una sola vez. Ahora es una función aparte porque necesitamos
+   * poder llamarla de nuevo cuando producto.js agrega tarjetas
+   * nuevas al DOM (los productos que vienen del JSON).
+   */
+  function conectarStepper(contador) {
 
-    const contenedor = contador.closest('[data-name]');
-    if (!contenedor) return;
+    // Evita conectar el mismo stepper dos veces si esta función
+    // se llama más de una vez (por ejemplo, si el carrito se
+    // recarga o se agregan más productos después).
+    if (contador.dataset.wired === 'true') return;
+    contador.dataset.wired = 'true';
 
-    const nombre = contenedor.getAttribute('data-name');
-    const precio = parseFloat(contenedor.getAttribute('data-price')) || 0;
+    const contenedorProducto = contador.closest('[data-name]');
+    if (!contenedorProducto) return;
+
+    const nombre = contenedorProducto.getAttribute('data-name');
+    const precio = parseFloat(contenedorProducto.getAttribute('data-price')) || 0;
 
     const botonMenos = contador.querySelector('.qty-minus');
     const botonMas = contador.querySelector('.qty-plus');
@@ -354,7 +370,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     });
 
-  });
+  }
+
+  /**
+   * Busca TODOS los .qty-stepper que haya en la página en este
+   * momento (los que ya existían, como el de Mango, y los que
+   * producto.js haya podido agregar) y los conecta al carrito.
+   */
+  function conectarTodosLosSteppers() {
+
+    document.querySelectorAll('.qty-stepper').forEach(conectarStepper);
+
+  }
 
   if (botonCarrito && panelCarrito) {
 
@@ -417,6 +444,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
+  // Conecta lo que ya exista en el HTML al cargar (por ejemplo, el
+  // stepper del Encurtido de Mango, que sigue escrito a mano).
+  conectarTodosLosSteppers();
   renderizarCarrito();
+
+  // Cuando producto.js termina de insertar las tarjetas de Pepino
+  // y Rábano (cargadas desde productos.json), esta página se entera
+  // por este evento y conecta también esos steppers nuevos, y les
+  // aplica la misma animación de aparición que al resto de la página.
+  document.addEventListener('productos:listos', () => {
+
+    conectarTodosLosSteppers();
+    activarScrollReveal(document.querySelectorAll('.productos .producto'));
+
+  });
 
 });
