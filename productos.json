@@ -14,10 +14,10 @@
     "descripcion": "Una opción diferente, deliciosa y perfecta para cualquier comida."
   },
   {
-    "nombre": "Encurtido de Rábano",
-    "precio": 3.00,
-    "imagen": "img1.png",
-    "alt": "Rábano",
-    "descripcion": "Una opción diferente, deliciosa y perfecta para cualquier comida."
+    "nombre": "Encurtido de Zanahoria",
+    "precio": 3.25,
+    "imagen": "img8.png",
+    "alt": "Zanahoria",
+    "descripcion": "Zanahoria encurtida con un toque crujiente, ideal para acompañar cualquier plato."
   }
 ]
