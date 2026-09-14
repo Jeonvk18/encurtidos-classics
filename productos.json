@@ -12,5 +12,12 @@
     "imagen": "img1.png",
     "alt": "Rábano",
     "descripcion": "Una opción diferente, deliciosa y perfecta para cualquier comida."
+  },
+  {
+    "nombre": "Encurtido de Rábano",
+    "precio": 3.00,
+    "imagen": "img1.png",
+    "alt": "Rábano",
+    "descripcion": "Una opción diferente, deliciosa y perfecta para cualquier comida."
   }
 ]
