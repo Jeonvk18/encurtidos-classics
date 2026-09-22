@@ -239,6 +239,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   };
 
+  /**
+   * Convierte el carrito actual en un objeto simple, listo para
+   * guardarse en la base de datos (Firestore). Se usa justo antes
+   * de que el cliente envíe el pedido por WhatsApp o Instagram.
+   */
+  const empacarPedidoParaGuardar = (metodoEnvio) => {
+
+    const productos = Object.entries(carrito).map(([nombre, datos]) => ({
+      nombre,
+      precio: datos.price,
+      cantidad: datos.qty
+    }));
+
+    const total = productos.reduce(
+      (suma, producto) => suma + producto.precio * producto.cantidad,
+      0
+    );
+
+    return { productos, total, metodoEnvio };
+
+  };
+
   const actualizarEnlacesCarrito = () => {
 
     const textoPedido = construirTextoPedido();
@@ -424,6 +446,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       }
 
+      // Si pedidos-db.js está cargado y conectado a Firebase,
+      // guardamos este pedido en la base de datos.
+      if (typeof guardarPedidoEnBaseDeDatos === 'function') {
+
+        guardarPedidoEnBaseDeDatos(empacarPedidoParaGuardar('instagram'));
+
+      }
+
     });
 
   }
@@ -436,6 +466,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         evento.preventDefault();
         mostrarAviso('Agrega al menos un producto primero 🙂');
+        return;
+
+      }
+
+      // Si pedidos-db.js está cargado y conectado a Firebase,
+      // guardamos este pedido en la base de datos.
+      if (typeof guardarPedidoEnBaseDeDatos === 'function') {
+
+        guardarPedidoEnBaseDeDatos(empacarPedidoParaGuardar('whatsapp'));
 
       }
 
