@@ -1,13 +1,4 @@
 /* ======================================================
-   GOOGLE FONTS
-   ------------------------------------------------------
-   La carga de la tipografía se movió al <head> de index.html
-   (como <link>, en paralelo con este archivo) en vez de
-   @import aquí, para que el navegador no tenga que esperar
-   a leer todo este CSS antes de pedir la fuente.
-====================================================== */
-
-/* ======================================================
    VARIABLES
 ====================================================== */
 
@@ -1769,9 +1760,6 @@ footer hr {
 
 @media (max-width:768px) {
 
-  /* background-attachment: fixed es costoso en móviles (obliga a
-     recalcular la posición del fondo en cada scroll). Lo quitamos
-     solo en pantallas chicas; en computadora se mantiene el efecto. */
   header {
     background-attachment: scroll;
   }

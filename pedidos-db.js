@@ -5,11 +5,6 @@
    y guardar ahí cada pedido que un cliente env\u00eda por
    WhatsApp o Instagram. script.js lo usa, pero no necesita
    saber c\u00f3mo funciona por dentro.
- 
-   IMPORTANTE: reemplaza los valores de abajo por los tuyos.
-   Los obtienes en Firebase Console > Configuraci\u00f3n del
-   proyecto > Tus apps > (ic\u00f3no </>) > "SDK setup and
-   configuration".
 ====================================================== */
 
 const firebaseConfig = {

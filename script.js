@@ -239,11 +239,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   };
 
-  /**
-   * Convierte el carrito actual en un objeto simple, listo para
-   * guardarse en la base de datos (Firestore). Se usa justo antes
-   * de que el cliente envíe el pedido por WhatsApp o Instagram.
-   */
   const empacarPedidoParaGuardar = (metodoEnvio) => {
 
     const productos = Object.entries(carrito).map(([nombre, datos]) => ({
@@ -393,11 +388,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
-  /**
-   * Busca TODOS los .qty-stepper que haya en la página en este
-   * momento (los que ya existían, como el de Mango, y los que
-   * producto.js haya podido agregar) y los conecta al carrito.
-   */
   function conectarTodosLosSteppers() {
 
     document.querySelectorAll('.qty-stepper').forEach(conectarStepper);
@@ -470,8 +460,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       }
 
-      // Si pedidos-db.js está cargado y conectado a Firebase,
-      // guardamos este pedido en la base de datos.
       if (typeof guardarPedidoEnBaseDeDatos === 'function') {
 
         guardarPedidoEnBaseDeDatos(empacarPedidoParaGuardar('whatsapp'));
@@ -487,10 +475,6 @@ document.addEventListener('DOMContentLoaded', () => {
   conectarTodosLosSteppers();
   renderizarCarrito();
 
-  // Cuando producto.js termina de insertar las tarjetas de Pepino
-  // y Rábano (cargadas desde productos.json), esta página se entera
-  // por este evento y conecta también esos steppers nuevos, y les
-  // aplica la misma animación de aparición que al resto de la página.
   document.addEventListener('productos:listos', () => {
 
     conectarTodosLosSteppers();
