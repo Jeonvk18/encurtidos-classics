@@ -2,14 +2,14 @@
   {
     "nombre": "Encurtido de Pepino",
     "precio": 3.50,
-    "imagen": "img2.png",
+    "imagen": "img2.webp",
     "alt": "Pepino",
     "descripcion": "Crujiente, fresco y con el equilibrio perfecto entre acidez y sabor."
   },
   {
     "nombre": "Encurtido de Rábano",
     "precio": 3.50,
-    "imagen": "img1.png",
+    "imagen": "img1.webp",
     "alt": "Rábano",
     "descripcion": "Una opción diferente, deliciosa y perfecta para cualquier comida."
   }

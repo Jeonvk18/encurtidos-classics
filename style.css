@@ -58,7 +58,7 @@ header {
   background:
     linear-gradient(rgba(20, 85, 40, .75),
       rgba(20, 85, 40, .75)),
-    url("img4.png") no-repeat;
+    url("img4.webp") no-repeat;
 
   background-size: cover;
 
@@ -1765,6 +1765,13 @@ footer hr {
 }
 
 @media (max-width:768px) {
+
+  /* background-attachment: fixed es costoso en móviles (obliga a
+     recalcular la posición del fondo en cada scroll). Lo quitamos
+     solo en pantallas chicas; en computadora se mantiene el efecto. */
+  header {
+    background-attachment: scroll;
+  }
 
   .container {
     width: 100%;
