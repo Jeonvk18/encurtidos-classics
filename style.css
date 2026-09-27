@@ -1,8 +1,11 @@
 /* ======================================================
    GOOGLE FONTS
+   ------------------------------------------------------
+   La carga de la tipografía se movió al <head> de index.html
+   (como <link>, en paralelo con este archivo) en vez de
+   @import aquí, para que el navegador no tenga que esperar
+   a leer todo este CSS antes de pedir la fuente.
 ====================================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
 
 /* ======================================================
    VARIABLES
