@@ -1901,8 +1901,15 @@ td {
   .ig-float {
     width: 52px;
     height: 52px;
-    bottom: 18px;
+    bottom: 75px;
     right: 18px;
+  }
+
+  .back-to-top {
+    width: 45px;
+    height: 45px;
+    bottom: 75px;
+    right: 80px;
   }
 
   .ig-float svg {
