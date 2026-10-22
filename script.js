@@ -470,6 +470,65 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
+  /* ====================================================
+     8. FORMULARIO DE CONTACTO → WHATSAPP
+  ==================================================== */
+
+  const formularioContacto = document.getElementById('form-contacto');
+
+  if (formularioContacto) {
+
+    const errorContacto = document.getElementById('fc-error');
+
+    formularioContacto.addEventListener('submit', (evento) => {
+
+      evento.preventDefault();
+
+      const campoNombre = formularioContacto.elements['nombre'];
+      const campoTelefono = formularioContacto.elements['telefono'];
+      const campoMotivo = formularioContacto.elements['motivo'];
+      const campoMensaje = formularioContacto.elements['mensaje'];
+
+      const nombre = campoNombre.value.trim();
+      const telefono = campoTelefono.value.trim();
+      const motivo = campoMotivo.value;
+      const mensaje = campoMensaje.value.trim();
+
+      [campoNombre, campoMensaje].forEach(c => c.classList.remove('campo-invalido'));
+
+      if (!nombre || !mensaje) {
+
+        if (!nombre) campoNombre.classList.add('campo-invalido');
+        if (!mensaje) campoMensaje.classList.add('campo-invalido');
+
+        errorContacto.textContent = 'Por favor completa tu nombre y el mensaje.';
+        errorContacto.hidden = false;
+        return;
+
+      }
+
+      errorContacto.hidden = true;
+
+      const lineas = [
+        '¡Hola Encurtidos Classic\'s! 👋',
+        '',
+        `*Nombre:* ${nombre}`,
+        telefono ? `*WhatsApp:* ${telefono}` : null,
+        `*Motivo:* ${motivo}`,
+        '',
+        `*Mensaje:* ${mensaje}`
+      ].filter(linea => linea !== null);
+
+      const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(lineas.join('\n'))}`;
+
+      window.open(url, '_blank', 'noopener');
+
+      formularioContacto.reset();
+
+    });
+
+  }
+
   // Conecta lo que ya exista en el HTML al cargar (por ejemplo, el
   // stepper del Encurtido de Mango, que sigue escrito a mano).
   conectarTodosLosSteppers();

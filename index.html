@@ -544,41 +544,83 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <h2>Contáctanos</h2>
 
             <p>
-                Síguenos en nuestras redes sociales para descubrir nuevos
-                productos, promociones y recetas.
+                Escríbenos para hacer tu pedido o resolver cualquier duda
+                sobre nuestros productos.
             </p>
 
         </div>
  
          <div class="contact-box">
 
-            <div class="info">
+            <div class="contact-col">
 
-                <h3>📍 Ubicación</h3>
+                <div class="info">
 
-                <p>Guayaquil, Ecuador</p>
+                    <h3>📍 Ubicación</h3>
 
-                <h3>📱 Atención</h3>
+                    <p>Guayaquil, Ecuador</p>
 
-                <p>Lunes a Sábado</p>
+                    <h3>📱 Atención</h3>
 
-                <p>08:00 - 18:00</p>
+                    <p>Lunes a Sábado</p>
+
+                    <p>08:00 - 18:00</p>
+
+                </div>
+
+                <div class="info mascota-card">
+
+                    <img src="img6.jpeg"
+                         alt="Mascota de Encurtidos Classic's saludando"
+                         class="contact-mascota"
+                         loading="lazy">
+
+                    <p class="mascota-texto">
+                        "En Encurtidos Classic's estamos siempre listos para atenderte y ayudarte a disfrutar del auténtico sabor casero de nuestros encurtidos."
+                    </p>
+
+                </div>
 
             </div>
 
             <div class="social">
 
-                <h3>Instagram</h3>
+                <h3>💬 Escríbenos por WhatsApp</h3>
 
-                <p>@encurtidosclassics1</p>
+                <p>Llena el formulario y te responderemos lo antes posible.</p>
 
-                <a href="https://www.instagram.com/encurtidosclassics1"
-                   target="_blank"
-                   class="btn">
+                <form id="form-contacto" class="form-contacto" novalidate>
 
-                    Visitar Instagram 📸
+                    <label for="fc-nombre">Nombre</label>
+                    <input type="text" id="fc-nombre" name="nombre"
+                           placeholder="Tu nombre" autocomplete="name"
+                           maxlength="60" required>
 
-                </a>
+                    <label for="fc-telefono">Tu WhatsApp (opcional)</label>
+                    <input type="tel" id="fc-telefono" name="telefono"
+                           placeholder="Ej: 0991234567" autocomplete="tel"
+                           maxlength="20">
+
+                    <label for="fc-motivo">Motivo</label>
+                    <select id="fc-motivo" name="motivo">
+                        <option>Quiero hacer un pedido</option>
+                        <option>Quiero información de productos</option>
+                        <option>Consulta sobre envíos</option>
+                        <option>Otro</option>
+                    </select>
+
+                    <label for="fc-mensaje">Mensaje</label>
+                    <textarea id="fc-mensaje" name="mensaje" rows="4"
+                              placeholder="Cuéntanos qué necesitas..."
+                              maxlength="500" required></textarea>
+
+                    <p class="form-error" id="fc-error" role="alert" hidden></p>
+
+                    <button type="submit" class="btn btn-whatsapp">
+                        Enviar por WhatsApp 💬
+                    </button>
+
+                </form>
 
             </div>
 

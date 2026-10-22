@@ -922,17 +922,102 @@ details p {
   margin-bottom: 12px;
 }
 
-.social {
+.contact-col {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.mascota-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+}
+
+.contact-mascota {
+  display: block;
+  width: 100%;
+  max-width: 240px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-bottom: 18px;
+}
+
+.info p.mascota-texto {
+  color: var(--primary-dark);
+  font-weight: 600;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.social {
+  text-align: left;
 }
 
 .social .btn {
   margin-top: 20px;
-  background: linear-gradient(135deg, #E1306C, #FD1D1D, #FCAF45);
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  background: linear-gradient(135deg, #25D366, #128C7E);
 }
 
 .social .btn:hover {
   transform: translateY(-5px) scale(1.03);
+}
+
+/* Formulario de contacto (WhatsApp) */
+
+.form-contacto label {
+  display: block;
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin: 14px 0 6px;
+}
+
+.form-contacto input,
+.form-contacto select,
+.form-contacto textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--text);
+  background: #f8fff6;
+  border: 2px solid #d6ecd8;
+  border-radius: 12px;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.form-contacto textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-contacto input:focus,
+.form-contacto select:focus,
+.form-contacto textarea:focus {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 4px rgba(76, 175, 80, .18);
+}
+
+.form-contacto .campo-invalido {
+  border-color: #d93025;
+}
+
+.form-error {
+  color: #d93025 !important;
+  font-size: .9rem;
+  margin: 12px 0 0 !important;
 }
 
 /* ======================================================
